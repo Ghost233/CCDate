@@ -9,11 +9,11 @@
 #include "CCDate.h"
 #include <cmath>
 
-int timezoneOffset = INT32_MAX;
+int timezoneOffset = 2147483647;
 
 int CCDate::sharedTimezoneOffset()
 {
-    if (timezoneOffset == INT32_MAX)
+    if (timezoneOffset == 2147483647)
     {
         timeval tempTimeval;
         gettimeofday(&tempTimeval, 0);
@@ -318,4 +318,17 @@ DATE_Time CCDate::setUTCYear(DATE_Year year)
     _UTCDate.tm_year = year - 1900;
     this->syncFromUTCDate();
     return this->getTime();
+}
+
+std::string CCDate::description()
+{
+    CCString *tempDescription = CCString::createWithFormat("%d %d %d %d %d %d %ld",
+                                                           this->getYear(),
+                                                           this->getMonth(),
+                                                           this->getDay(),
+                                                           this->getHours(),
+                                                           this->getMinutes(),
+                                                           this->getSeconds(),
+                                                           this->getMicroseconds());
+    return tempDescription->m_sString;
 }

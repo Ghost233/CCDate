@@ -379,6 +379,8 @@ public:
      *	@return	DATE_Time 按照通用时间返回 Date 对象中自 1970 年 1 月 1 日午夜以来的毫秒数。
      */
     DATE_Time setUTCYear(DATE_Year year);
+    
+    std::string description();
 };
 
 #endif
